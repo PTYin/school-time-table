@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Route, Routes, Link, useLocation, Outlet} from 'react-router-dom'
-import {Breadcrumb, Layout} from 'antd'
+import {Breadcrumb, Button, Layout} from 'antd'
 import DayInfo from './views/DayInfo'
 import CourseInfo from './views/CourseInfo'
 import Requirements from './views/Requirements'
@@ -26,7 +26,7 @@ function Home() {
 
   const data = new DataStruct()
 
-  function itemRender(item, params, items, paths) {
+  function itemRender(item) {
     return item.href === currentPath ? <span style={{color: "#000"}}>{item.title}</span> : <Link to={item.href}>{item.title}</Link>
   }
 
@@ -37,9 +37,15 @@ function Home() {
       </Header>
       <Content style={{padding: '0 50px', overflow: 'auto'}}>
         <Breadcrumb style={{margin: '16px 0'}} separator={">"} items={items} itemRender={itemRender}/>
-        <div className="site-layout-content" style={{background: "#f5f5f5"}}>
+        <div style={{background: "#f5f5f5"}}>
           <Routes>
-            <Route path="/" element={<Outlet/>}/>
+            <Route path="/" element={
+              <div style={{display: "flex", width: "100%", justifyContent: "space-evenly"}}>
+                <Link to={"day-info"}>
+                  <Button style={{width: "40vw", height: "20vh"}} type={"dashed"} size={"large"}>开始</Button>
+                </Link>
+              </div>
+            }/>
             <Route path="day-info" element={<DayInfo data={data}/>}/>
             <Route path="course-info" element={<CourseInfo data={data}/>}/>
             <Route path="requirements" element={<Requirements data={data}/>}/>

@@ -46,7 +46,7 @@ export default function (props) {
                     }
                   }}
           >
-            停用
+            {disabledCells.has(`${i},${j}`) ? "启用" : "停用"}
           </Button>
         </Col>,
       )
