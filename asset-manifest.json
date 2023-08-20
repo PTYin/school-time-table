@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/school-time-table/static/css/main.e6c13ad2.css",
+    "main.js": "/school-time-table/static/js/main.11c979c9.js",
+    "static/js/787.17389a16.chunk.js": "/school-time-table/static/js/787.17389a16.chunk.js",
+    "index.html": "/school-time-table/index.html",
+    "main.e6c13ad2.css.map": "/school-time-table/static/css/main.e6c13ad2.css.map",
+    "main.11c979c9.js.map": "/school-time-table/static/js/main.11c979c9.js.map",
+    "787.17389a16.chunk.js.map": "/school-time-table/static/js/787.17389a16.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.11c979c9.js"
+  ]
+}
