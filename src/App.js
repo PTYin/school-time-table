@@ -62,7 +62,7 @@ function Home() {
 
 export default function App() {
   return (
-    <Router>
+    <Router basename={"school-time-table"}>
       <Home/>
     </Router>
   )
