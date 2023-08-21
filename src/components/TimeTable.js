@@ -20,30 +20,45 @@ export default function (props) {
   const timeTableEntries = Object.entries(timeTable)
   const timeTableContent = timeTableEntries[currentPage - 1][1]
 
-  const rows = []
+  const headers = [], rows = []
+  for (let j = 0; j < colCount; j++) {
+    headers.push(
+      <th key={j.toString()} style={{width: `${80 / colCount}vw`, border: "1px solid"}}>
+        第{j}天
+      </th>,
+    )
+  }
+  rows.push(
+    <tr key={-1} style={{lineHeight: "36px", border: "1px solid"}}>
+      {headers}
+    </tr>
+  )
   for (let i = 0; i < rowCount; i++) {
     const cols = []
     for (let j = 0; j < colCount; j++) {
       cols.push(
-        <Col key={j.toString()} style={{width: `${80 / colCount}vw`}}>
+        <td key={j.toString()} style={{width: `${80 / colCount}vw`, border: "1px solid"}}>
           {timeTableContent[`${i},${j}`] || ""}
-        </Col>,
+        </td>,
       )
     }
     rows.push(
-      <Row key={i.toString()} style={{marginBottom: 24}} justify={'space-evenly'} align={'middle'}>
+      <tr key={i.toString()} style={{lineHeight: "36px", border: "1px solid"}}>
         {cols}
-      </Row>
+      </tr>
     )
   }
 
   return (
     <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-      <div style={{display: "flex", width: "100%", justifyContent: "space-evenly", marginBottom: 16}}>
+      <div style={{display: "flex", width: "100%", justifyContent: "space-evenly", margin: 16}}>
+        班级 {timeTableEntries[currentPage - 1][0]}
       </div>
-      <div style={{width: '100%', textAlign: "center"}}>
-        {rows}
-      </div>
+      <table style={{width: '100%', textAlign: "center", border: "1px solid", marginBottom: 16}}>
+        <tbody>
+          {rows}
+        </tbody>
+      </table>
       <Pagination current={currentPage} onChange={setCurrentPage} defaultPageSize={1} total={totalPage}/>
     </div>
   );
