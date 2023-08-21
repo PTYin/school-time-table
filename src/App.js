@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Routes, Link, useLocation, Outlet} from 'react-router-dom'
+import {HashRouter as Router, Route, Routes, Link, useLocation, Outlet} from 'react-router-dom'
 import {Breadcrumb, Button, Layout} from 'antd'
 import DayInfo from './views/DayInfo'
 import CourseInfo from './views/CourseInfo'
@@ -62,7 +62,7 @@ function Home() {
 
 export default function App() {
   return (
-    <Router basename={"school-time-table"}>
+    <Router>
       <Home/>
     </Router>
   )
