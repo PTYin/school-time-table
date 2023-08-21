@@ -10,17 +10,18 @@ export default function (props) {
   const [timeTable, setTimeTable] = useState(null)
   const [messageApi, contextHolder] = message.useMessage()
 
-  const T = Object.keys(data.timeMapping).length
-  const [teacherMap, classMap, courseMap, teacherClassCourseCount] = convertFromTuples(data.tuples)
+  const T = Object.keys(data.timeMapping || {}).length
+  const [teacherMap, classMap, courseMap, teacherClassCourseCount] = convertFromTuples(data.tuples || [])
   const M = teacherMap.size, N = classMap.size, K = courseMap.size
+
+  if (data.timeToDay && data.timeMapping && data.tuples && !iterator) {
+    iterator = generateTimeTable(T, M, N, K, teacherClassCourseCount, data.timeToDay, reverse(Object.entries(data.timeMapping)), reverse(teacherMap), reverse(classMap), reverse(courseMap))
+  }
 
   function reverse(map) {
     return new Map(Array.from(map, a => a.reverse()))
   }
 
-  if (!iterator) {
-    iterator = generateTimeTable(T, M, N, K, teacherClassCourseCount, data.timeToDay, reverse(Object.entries(data.timeMapping)), reverse(teacherMap), reverse(classMap), reverse(courseMap))
-  }
   function generate() {
     let next = iterator.next()
     if (!next.done) {
@@ -30,13 +31,6 @@ export default function (props) {
       iterator = generateTimeTable(T, M, N, K, teacherClassCourseCount, data.timeToDay, reverse(Object.entries(data.timeMapping)), reverse(teacherMap), reverse(classMap), reverse(courseMap))
     }
   }
-
-  // let next = iterator.next(), count = 0
-  // while(!next.done && count < 100) {
-  //   console.log(next.value)
-  //   next = iterator.next()
-  //   count++
-  // }
 
   return (
     <div>
